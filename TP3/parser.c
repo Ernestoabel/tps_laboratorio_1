@@ -19,28 +19,28 @@ int parser_JugadorFromText(FILE* pFile , LinkedList* pArrayListJugador)
 
 	if(pFile!=NULL && pArrayListJugador!=NULL){
 
-			fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferJugador[0],bufferJugador[1],bufferJugador[2],
-					bufferJugador[3],bufferJugador[4],bufferJugador[5]);
+		fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferJugador[0],bufferJugador[1],bufferJugador[2],
+				bufferJugador[3],bufferJugador[4],bufferJugador[5]);
 
-			while(!feof(pFile))
-			{
+		while(!feof(pFile))
+		{
 
-				cantidad=fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferJugador[0],bufferJugador[1],
+			cantidad=fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferJugador[0],bufferJugador[1],
 						bufferJugador[2],bufferJugador[3],bufferJugador[4],bufferJugador[5]);
-				if(cantidad<6){
-					jug_delete(unJugador);
-					unJugador=NULL;
-					retorno=-1;
-					break;
-				}else{
-					unJugador=jug_newParametros(bufferJugador[0],bufferJugador[1],bufferJugador[2],
-							bufferJugador[3],bufferJugador[4],bufferJugador[5]);
-					if(unJugador!=NULL){
-						ll_add(pArrayListJugador,(Jugador*)unJugador);
-					}
-				retorno=0;
+			if(cantidad<6){
+				jug_delete(unJugador);
+				unJugador=NULL;
+				retorno=-1;
+				break;
+			}else{
+				unJugador=jug_newParametros(bufferJugador[0],bufferJugador[1],bufferJugador[2],
+						bufferJugador[3],bufferJugador[4],bufferJugador[5]);
+				if(unJugador!=NULL){
+					ll_add(pArrayListJugador,(Jugador*)unJugador);
 				}
+				retorno=0;
 			}
+		}
 
 	}
     return retorno;
@@ -130,28 +130,27 @@ int parser_SeleccionFromText(FILE* pFile , LinkedList* pArrayListSeleccion)
 
 	if(pFile!=NULL && pArrayListSeleccion!=NULL){
 
-			fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferSeleccion[0],bufferSeleccion[1],
+		fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferSeleccion[0],bufferSeleccion[1],
+				bufferSeleccion[2],bufferSeleccion[3]);
+		while(!feof(pFile))
+		{
+
+			cant=fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferSeleccion[0],bufferSeleccion[1],
 					bufferSeleccion[2],bufferSeleccion[3]);
-			while(!feof(pFile))
-			{
-
-				cant=fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferSeleccion[0],bufferSeleccion[1],
+			if(cant<4){
+				selec_delete(unaSeleccion);
+				unaSeleccion=NULL;
+				retorno=-1;
+				break;
+			}else{
+				unaSeleccion=selec_newParametros(bufferSeleccion[0],bufferSeleccion[1],
 						bufferSeleccion[2],bufferSeleccion[3]);
-				if(cant<4){
-					selec_delete(unaSeleccion);
-					unaSeleccion=NULL;
-					retorno=-1;
-					break;
-				}else{
-					unaSeleccion=selec_newParametros(bufferSeleccion[0],bufferSeleccion[1],
-							bufferSeleccion[2],bufferSeleccion[3]);
-					if(unaSeleccion!=NULL){
-						ll_add(pArrayListSeleccion,(Seleccion*)unaSeleccion);
-					}
-					retorno=0;
+				if(unaSeleccion!=NULL){
+					ll_add(pArrayListSeleccion,(Seleccion*)unaSeleccion);
 				}
+				retorno=0;
 			}
-
+		}
 	}
     return retorno;
 }

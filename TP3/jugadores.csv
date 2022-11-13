@@ -1,5 +1,5 @@
 id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
-1,Emiliano Martinez,28,Portero,Argentino,0
+1,Emiliano Martinez,28,Portero,Argentino,3
 2,Juan Musso,27,Portero,Argentino,0
 3,Agustin Marchesin,33,Portero,Argentino,0
 4,Esteban Andrada,30,Portero,Argentino,0
@@ -20,7 +20,7 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 19,Gonzalo Montiel,24,Lateral derecho,Argentino,0
 20,Juan Foyth ,23,Lateral derecho,Argentino,0
 21,Nahuel Molina,23,Lateral derecho,Argentino,0
-22,Guido Rodriguez,27,Pivote,Argentino,0
+22,Guido Rodriguez,27,Pivote,Argentino,3
 23,Leandro Paredes ,27,Pivote,Argentino,0
 24,Rodrigo de Paul,27,Mediocentro,Argentino,0
 25,Giovani Lo Celso,25,Mediocentro,Argentino,0
@@ -36,10 +36,10 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 35,angel Di Maria ,33,Extremo derecho,Argentino,0
 36,Eduardo Salvio,30,Extremo derecho,Argentino,0
 37,Maximiliano Meza,28,Extremo derecho,Argentino,0
-38,Lionel Messi,34,Mediapunta,Argentino,0
+38,Lionel Messi,34,Mediapunta,Argentino,3
 39,Paulo Dybala ,27,Mediapunta,Argentino,0
 40,Joaquin Correa,26,Mediapunta,Argentino,0
-41,Lautaro Martinez,23,Delantero centro,Argentino,0
+41,Lautaro Martinez,23,Delantero centro,Argentino,3
 42,Lucas Alario,28,Delantero centro,Argentino,0
 43,Sergio Aguero,33,Delantero centro,Argentino,0
 44,Julian alvarez,21,Delantero centro,Argentino,0
@@ -139,7 +139,7 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 138,Francisco Trincao,20,Extremo derecho,Portugues,0
 139,Joao Felix,20,Mediapunta,Portugues,0
 140,Rafa Silva,27,Mediapunta,Portugues,0
-141,Cristiano Ronaldo,35,Delantero centro,Portugues,26
+141,Cristiano Ronaldo,35,Delantero centro,Portugues,0
 142,Andre Silva,24,Delantero centro,Portugues,0
 143,Paulinho,27,Delantero centro,Portugues,0
 144,Aaron Ramsdale,24,Portero,Ingles,0
@@ -155,11 +155,11 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 154,Luke Shaw,27,Lateral izquierdo,Ingles,0
 155,Trent Alexander Arnold,24,Lateral derecho,Ingles,0
 156,Reece James,22,Lateral derecho,Ingles,0
-157,Kyle Walker,32,Lateral derecho,Ingles,0
+157,Kyle Walker,32,Lateral derecho,Ingles,20
 158,Kieran Trippier,32,Lateral derecho,Ingles,0
 159,Declan Rice,23,Pivote,Ingles,0
 160,Kalvin Phillips,26,Pivote,Ingles,0
-161,Phil Foden,22,Mediocentro,Ingles,0
+161,Phil Foden,22,Mediocentro,Ingles,20
 162,Jude Bellingham,19,Mediocentro,Ingles,0
 163,James Ward Prowse,27,Mediocentro,Ingles,0
 164,Jordan Henderson,32,Mediocentro,Ingles,0
@@ -169,7 +169,7 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 168,Jack Grealish,27,Extremo izquierdo,Ingles,0
 169,Jarrod Bowen,25,Extremo derecho,Ingles,0
 170,Harry Kane,29,Delantero centro,Ingles,0
-171,Tammy Abraham,25,Delantero centro,Ingles,0
+171,Tammy Abraham,25,Delantero centro,Ingles,20
 172,Ivan Toney,26,Delantero centro,Ingles,0
 173,Antonio Rudiger,29,Defensa central,Aleman,0
 174,Armel Bella Kotchap ,20,Defensa central,Aleman,0
@@ -186,7 +186,7 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 185,Leroy Sane ,26,Extremo izquierdo,Aleman,0
 186,Lukas Nmecha,23,Delantero centro,Aleman,0
 187,Mahmoud Dahoud,24,Mediocentro,Aleman,0
-188,Marc Andre ter Stegen,30,Portero,Aleman,0
+188,Marc Andre ter Stegen,30,Portero,Aleman,1
 189,Matthias Ginter,28,Defensa central,Aleman,0
 190,Maximilian Arnold,28,Mediocentro,Aleman,0
 191,Nadiem Amiri,23,Mediocentro,Aleman,0
@@ -194,11 +194,11 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 193,Niklas Sule,27,Defensa central,Aleman,0
 194,Oliver Baumann,32,Portero,Aleman,0
 195,Robin Gosens,28,Interior izquierdo,Aleman,0
-196,Serge Gnabry,27,Extremo derecho,Aleman,0
+196,Serge Gnabry,27,Extremo derecho,Aleman,1
 197,Thilo Kehrer,26,Defensa central,Aleman,0
 198,Thomas Muller ,33,Mediapunta,Aleman,0
 199,Timo Werner,26,Delantero centro,Aleman,0
-200,Toni Kroos,30,Mediocentro,Aleman,0
+200,Toni Kroos,30,Mediocentro,Aleman,1
 201,Guillermo Ochoa,37,Portero,Mexicano,0
 202,Rodolfo Cota,35,Portero,Mexicano,0
 203,Alfredo Talavera,40,Portero,Mexicano,0
@@ -324,21 +324,21 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 323,Connor Metcalfe,22,Pivote,Australiano,0
 324,Keanu Baccus,24,Pivote,Australiano,0
 325,Cammy Devlin ,24,Pivote,Australiano,0
-326,Aaron Mooy,32,Mediocentro,Australiano,0
+326,Aaron Mooy,32,Mediocentro,Australiano,4
 327,Riley McGree,23,Mediocentro,Australiano,0
 328,Jackson Irvine,29,Mediocentro,Australiano,0
 329,Tyrese Francois,22,Mediocentro,Australiano,0
-330,Ajdin Hrustic ,26,Mediocentro ofensivo,Australiano,0
+330,Ajdin Hrustic ,26,Mediocentro ofensivo,Australiano,4
 331,Denis Genreau,23,Mediocentro ofensivo,Australiano,0
 332,Awer Mabil,27,Extremo izquierdo,Australiano,0
 333,Mathew Leckie,31,Extremo izquierdo,Australiano,0
 334,Martin Boyle,29,Extremo derecho,Australiano,0
-335,Marco Tilio,21,Extremo derecho,Australiano,0
+335,Marco Tilio,21,Extremo derecho,Australiano,4
 336,Jamie Maclaren,29,Delantero centro,Australiano,0
-337,Adam Taggart,29,Delantero centro,Australiano,0
+337,Adam Taggart,29,Delantero centro,Australiano,4
 338,Jason Cummings,27,Delantero centro,Australiano,0
 339,Mitchell Duke,31,Delantero centro,Australiano,0
-340,Garang Kuol,18,Delantero centro,Australiano,0
+340,Garang Kuol,18,Delantero centro,Australiano,4
 341,Meshaal Barsham,24,Portero,Qatari,0
 342,Salah Zakaria,23,Portero,Qatari,0
 343,Saad Al Sheeb,32,Portero,Qatari,0
@@ -369,13 +369,13 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 368,Almoez Ali,26,Delantero centro,Qatari,0
 369,Ahmed Alaaeldin,29,Delantero centro,Qatari,0
 370,Mohammed Muntari,28,Delantero centro,Qatari,0
-371,Mohamed Al-Owais ,32,Portero,Saudita,0
+371,Mohamed Al-Owais ,32,Portero,Saudita,2
 372,Sultan Al Ghannam,28,Defensa central,Saudita,0
-373,Abdulelah Al-Amri,25,Defensa central,Saudita,0
+373,Abdulelah Al-Amri,25,Defensa central,Saudita,2
 374,Ali Al-Boleahi,32,Lateral izquiero,Saudita,0
 375,Saud Abdulhamid,23,Lateral izquiero,Saudita,0
 376,Mohammed Al-Burayk,30,Lateral derecho,Saudita,0
-377,Salman Al Faraj,33,Pivote,Saudita,0
+377,Salman Al Faraj,33,Pivote,Saudita,2
 378,Mohammed Kanno,28,Mediocentro,Saudita,0
 379,Nasser Al Dawsari,23,Mediapunta,Saudita,0
 380,Salem Al Dawsari,31,Extremo izquierdo,Saudita,0
@@ -542,9 +542,9 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 541,Jason Denayer,27,Defensa central,Belga,0
 542,Zeno Debast,19,Defensa central,Belga,0
 543,Timothy Castagne,26,Lateral derecho,Belga,0
-544,Thomas Meunier,31,Lateral derecho,Belga,0
+544,Thomas Meunier,31,Lateral derecho,Belga,5
 545,Amadou Onana,21,Pivote,Belga,0
-546,Leander Dendoncker,27,Pivote,Belga,0
+546,Leander Dendoncker,27,Pivote,Belga,5
 547,Axel Witsel,33,Pivote,Belga,0
 548,Youri Tielemans,25,Mediocentro,Belga,0
 549,Kevin De Bruyne,31,Mediapunta,Belga,0
@@ -556,7 +556,7 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 555,Alexis Saelemaekers,23,Extremo derecho,Belga,0
 556,Dodi Lukébakio,25,Extremo derecho,Belga,0
 557,Loïs Openda,22,Delantero centro,Belga,0
-558,Michy Batshuayi,29,Delantero centro,Belga,0
+558,Michy Batshuayi,29,Delantero centro,Belga,5
 559,Dries Mertens,35,Delantero centro,Belga,0
 560,Romelu Menama Lukaku,29,Delantero centro,Belga,0
 561,Dominik Livakovic,27,Portero,Croata,0
@@ -646,9 +646,9 @@ id,nombreCompleto,edad,posicion,nacionalidad,idSeleccion
 645,Moussa Sissoko,21,Mediocentro,Frances,0
 646,Antoine Griezmann,31,Mediapunta,Frances,0
 647,Olivier Giroud,36,Delantero centro,Frances,0
-648,Kylian Mbappé,23,Delantero centro,Frances,16
+648,Kylian Mbappé,23,Delantero centro,Frances,0
 649,Ousmane Dembélé,25,Extremo derecho,Frances,0
-650,Karim Benzema,34,Delantero centro,Frances,16
+650,Karim Benzema,34,Delantero centro,Frances,0
 651,Kingsley Coman,27,Extremo izquierdo,Frances,0
 652,Marcus Thuram,21,Extremo izquierdo,Frances,0
 653,Danny Ward,29,Portero,Gales,0

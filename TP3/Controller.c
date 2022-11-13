@@ -90,40 +90,82 @@ int controller_editarJugador(LinkedList* pArrayListJugador)
 		ll_sort(pArrayListJugador,ordenarPorIdJugador, 1);
 		do{
 			if(mostrarJugadores(pArrayListJugador,1,"")==0){
-				utn_getEntero(&idAModificar,"\nSELECCIONE UN ID PARA MODIFICAR\n","--ERROR--",0,cantidad);
-				buscarJugPorId(pArrayListJugador,idAModificar,&indice);
-				for(i=0;i<cantidad;i++){
-				    unJugador= (Jugador*) ll_get(pArrayListJugador,indice);
-				    break;
+				if(utn_getEntero(&idAModificar,"\nSELECCIONE UN ID PARA MODIFICAR\n","--ERROR--",0,cantidad)==0){
+					if(buscarJugPorId(pArrayListJugador,idAModificar,&indice)==0){
+						for(i=0;i<cantidad;i++){
+							unJugador= (Jugador*) ll_get(pArrayListJugador,indice);
+							break;
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION buscarJugPorId\n");
+					}
+				}else{
+					printf("\nERROR EN LA FUNCION utn_getEntero\n");
 				}
 			}
 			opcionDeMenu=menuModificar();
 			switch(opcionDeMenu){
 				case 1:
-					utn_getCadenaCaracteres(51,nombreCompletoStr,"\nINGRESE EL NOMBRE COMPLETO DEL JUGADOR\n","\n--ERROR--\n");
-					jug_setNombreCompleto(unJugador,nombreCompletoStr);
-					ll_set(pArrayListJugador,indice,unJugador);
+					if(utn_getCadenaCaracteres(51,nombreCompletoStr,"\nINGRESE EL NOMBRE COMPLETO DEL JUGADOR\n","\n--ERROR--\n")==0){
+						if(jug_setNombreCompleto(unJugador,nombreCompletoStr)==0){
+							if(ll_set(pArrayListJugador,indice,unJugador)==0){
+							}else{
+								printf("\nERROR EN LA FUNCION ll_set\n");
+							}
+						}else{
+							printf("\nERROR EN LA FUNCION jug_setNombreCompleto\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION utn_getCadenaCaracteres\n");
+					}
 					break;
 				case 2:
-					utn_getEntero(&edadStr,"\nINGRESE LA EDAD DEL JUGADOR (ENTRE 14 Y 50)\n","\n--ERROR--\n",14,50);
-					jug_setEdad(unJugador,edadStr);
-					ll_set(pArrayListJugador,indice,unJugador);
+					if(utn_getEntero(&edadStr,"\nINGRESE LA EDAD DEL JUGADOR (ENTRE 14 Y 50)\n","\n--ERROR--\n",14,50)==0){
+						if(jug_setEdad(unJugador,edadStr)==0){
+							if(ll_set(pArrayListJugador,indice,unJugador)==0){
+							}else{
+								printf("\nERROR EN LA FUNCION ll_set\n");
+							}
+						}else{
+							printf("\nERROR EN LA FUNCION jug_setEdad\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION utn_getEntero\n");
+					}
 					break;
 				case 3:
 					do{
 						opcionesDePosicion();
-						utn_getCadenaCaracteres(50,posicionStr,"\nINGRESE LA POSICION DEL JUGADOR\n","--ERROR--");
+						if(utn_getCadenaCaracteres(50,posicionStr,"\nINGRESE LA POSICION DEL JUGADOR\n","--ERROR--")==0){
+						}else{
+							printf("\nERROR EN LA FUNCION utn_getCadenaCaracteres\n");
+						}
 					}while(validarPosicion(posicionStr)!=0);
-					jug_setPosicion(unJugador,posicionStr);
-					ll_set(pArrayListJugador,indice,unJugador);
+					if(jug_setPosicion(unJugador,posicionStr)==0){
+						if(ll_set(pArrayListJugador,indice,unJugador)==0){
+						}else{
+							printf("\nERROR EN LA FUNCION ll_set\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION jug_setPosicion\n");
+					}
 					break;
 				case 4:
 					do{
 						opcionesDeNacionalidad();
-						utn_getCadenaCaracteres(50,nacionalidadStr,"\nINGRESE LA NACIONALIDAD DEL JUGADOR\n","--ERROR--");
+						if(utn_getCadenaCaracteres(50,nacionalidadStr,"\nINGRESE LA NACIONALIDAD DEL JUGADOR\n","--ERROR--")==0){
+						}else{
+							printf("\nERROR EN LA FUNCION utn_getCadenaCaracteres\n");
+						}
 					}while(validarNacionalidad(nacionalidadStr)!=0);
-					jug_setNacionalidad(unJugador,nacionalidadStr);
-					ll_set(pArrayListJugador,indice,unJugador);
+					if(jug_setNacionalidad(unJugador,nacionalidadStr)==0){
+						if(ll_set(pArrayListJugador,indice,unJugador)==0){
+						}else{
+							printf("\nERROR EN LA FUNCION ll_set\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION jug_setNacionalidad\n");
+					}
 					break;
 				case 5:
 					confirmarSalir=continuarCarga("\nCONFIRME PARA VOLVER AL MENU PRINCIPAL");
@@ -141,19 +183,53 @@ int controller_editarJugador(LinkedList* pArrayListJugador)
  * \return int para validar si la funcion realizo su comedito
  *
  */
-int controller_removerJugador(LinkedList* pArrayListJugador)
+int controller_removerJugador(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion)
 {
 	char confirmarSalir;
-	int cantidad,idAModificar,indice;
+	int cantidad,idAModificar,indice,longitud,i,idSeleccion,id,convocados,indiceSeleccion;
+	Jugador* unJugador;
+	Seleccion* unaSeleccion;
 	if(pArrayListJugador!=NULL){
-		ll_sort(pArrayListJugador,ordenarPorIdJugador, 1);
+		if(ll_sort(pArrayListJugador,ordenarPorIdJugador, 1)==0){
+		}else{
+			printf("\nERROR EN LA FUNCION ll_sort\n");
+		}
 		do{
+			longitud=ll_len(pArrayListSeleccion);
 			if(mostrarJugadores(pArrayListJugador,1,"")==0){
-				buscarIdMaximo(pArrayListJugador,&cantidad);
-				utn_getEntero(&idAModificar,"\nSELECCIONE UN ID PARA ELIMINAR\n","--ERROR--",0,cantidad);
-				buscarJugPorId(pArrayListJugador,idAModificar,&indice);
-				ll_remove(pArrayListJugador,indice);
-				printf("JUGADOR ELIMINADO");
+				if(buscarIdMaximo(pArrayListJugador,&cantidad)==0){
+					if(utn_getEntero(&idAModificar,"\nSELECCIONE UN ID PARA ELIMINAR\n","--ERROR--",0,cantidad)==0){
+						if(buscarJugPorId(pArrayListJugador,idAModificar,&indice)==0){
+							unJugador=ll_get(pArrayListJugador, indice);
+							jug_getIdSeleccion(unJugador,&idSeleccion);
+							if(idSeleccion!=0){
+								for(i=0;i<longitud;i++){
+									unaSeleccion=ll_get(pArrayListSeleccion,i);
+									selec_getId(unaSeleccion,&id);
+									selec_getConvocados(unaSeleccion,&convocados);
+									if(id==idSeleccion){
+										indiceSeleccion=i;
+										convocados--;
+										selec_setConvocados(unaSeleccion,convocados);
+										break;
+									}
+								}
+								ll_set(pArrayListSeleccion,indiceSeleccion,unaSeleccion);
+							}
+							if(ll_remove(pArrayListJugador,indice)==0){
+								printf("\nJUGADOR ELIMINADO\n");
+							}else{
+								printf("\nERROR EN LA FUNCION buscarJugPorId\n");
+							}
+						}else{
+							printf("\nERROR EN LA FUNCION buscarJugPorId\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION utn_getEntero\n");
+					}
+				}else{
+					printf("\nERROR EN LA FUNCION buscarIdMaximo\n");
+				}
 			}
 			confirmarSalir=continuarCarga("\nCONFIRME PARA VOLVER AL MENU PRINCIPAL");
 		}while(confirmarSalir!='S');
@@ -172,8 +248,14 @@ int controller_listarJugadores(LinkedList* pArrayListJugador)
 {
 	int retorno=-1;
 	if(pArrayListJugador!=NULL){
-		ll_sort(pArrayListJugador,ordenarPorIdJugador, 1);
-		mostrarJugadores(pArrayListJugador,1,"");
+		if(ll_sort(pArrayListJugador,ordenarPorIdJugador, 1)==0){
+			if(mostrarJugadores(pArrayListJugador,1,"")==0){
+			}else{
+				printf("\nERROR EN LA FUNCION mostrarJugadores\n");
+			}
+		}else{
+			printf("\nERROR EN LA FUNCION ll_sort\n");
+		}
 		retorno=0;
 	}
     return retorno;
@@ -188,10 +270,19 @@ int controller_ordenarSelecciones(LinkedList* pArrayListSeleccion)
 {
 	int retorno=-1,opcion;
 	if(pArrayListSeleccion!=NULL){
-		utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
-				"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1);
-		ll_sort(pArrayListSeleccion,ordenarSeleccionPorConfederacion, opcion);
-		mostrarConfederaciones(pArrayListSeleccion);
+		if(utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
+				"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1)==0){
+			if(ll_sort(pArrayListSeleccion,ordenarSeleccionPorConfederacion, opcion)==0){
+				if(mostrarConfederaciones(pArrayListSeleccion)==0){
+				}else{
+					printf("\nERROR EN LA FUNCION mostrarConfederaciones\n");
+				}
+			}else{
+				printf("\nERROR EN LA FUNCION ll_sort\n");
+			}
+		}else{
+			printf("\nERROR EN LA FUNCION utn_getEntero\n");
+		}
 		retorno=0;
 	}
     return retorno;
@@ -212,25 +303,55 @@ int controller_ordenarJugadores(LinkedList* pArrayListJugador,LinkedList* pArray
 			opcionMenuOrdenar=menuListadosOrdenados();
 			switch(opcionMenuOrdenar){
 			case 1:
-				utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
-						"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1);
-				ll_sort(pArrayListJugador,ordenarPorNacionalidadJugador, opcion);
-				mostrarJugadores(pArrayListJugador,1,"");
+				if(utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
+						"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1)==0){
+					if(ll_sort(pArrayListJugador,ordenarPorNacionalidadJugador, opcion)==0){
+						if(mostrarJugadores(pArrayListJugador,1,"")==0){
+						}else{
+							printf("\nERROR EN LA FUNCION mostrarJugadores\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION ll_sort\n");
+					}
+				}else{
+					printf("\nERROR EN LA FUNCION utn_getEntero\n");
+				}
 				break;
 			case 2:
-				controller_ordenarSelecciones(pArrayListSeleccion);
+				if(controller_ordenarSelecciones(pArrayListSeleccion)==0){
+				}else{
+					printf("\nERROR EN LA FUNCION controller_ordenarSelecciones\n");
+				}
 				break;
 			case 3:
-				utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
-						"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1);
-				ll_sort(pArrayListJugador,ordenarPorEdadJugador, opcion);
-				mostrarJugadores(pArrayListJugador,1,"");
+				if(utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
+						"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1)==0){
+					if(ll_sort(pArrayListJugador,ordenarPorEdadJugador, opcion)==0){
+						if(mostrarJugadores(pArrayListJugador,1,"")==0){
+						}else{
+							printf("\nERROR EN LA FUNCION mostrarJugadores\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION ll_sort\n");
+					}
+				}else{
+					printf("\nERROR EN LA FUNCION utn_getEntero\n");
+				}
 				break;
 			case 4:
-				utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
-						"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1);
-				ll_sort(pArrayListJugador,ordenarPorNombreJugador, opcion);
-				mostrarJugadores(pArrayListJugador,1,"");
+				if(utn_getEntero(&opcion,"\nINGRESE 1 PARA ORDENAR DE MANERA ASCENDENTE\n"
+						"INGRESE 0 PARA ORDENAR DE MANERA DESCENDENTE\n","\n--ERROR--\n",0,1)==0){
+					if(ll_sort(pArrayListJugador,ordenarPorNombreJugador, opcion)==0){
+						if(mostrarJugadores(pArrayListJugador,1,"")==0){
+						}else{
+							printf("\nERROR EN LA FUNCION mostrarJugadores\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION ll_sort\n");
+					}
+				}else{
+					printf("\nERROR EN LA FUNCION utn_getEntero\n");
+				}
 				break;
 			case 5:
 				volverlAlMenu=continuarCarga("\nCONFIRME PARA VOLVER AL MENU PRINCIPAL");
@@ -256,7 +377,10 @@ int controller_guardarJugadoresModoTexto(char* path , LinkedList* pArrayListJuga
 	Jugador* unJugador;
 	int longitud,cantidad,id,edad,idSeleccion,tamanio,retorno=-1;
 	char nombreCompleto[51],posicion[51],nacionalidad[51],numeros[10];
-	ll_sort(pArrayListJugador,ordenarPorIdJugador, 1);
+	if(ll_sort(pArrayListJugador,ordenarPorIdJugador, 1)==0){
+	}else{
+		printf("\nERROR EN LA FUNCION ll_sort\n");
+	}
 	tamanio=ll_len(pArrayListJugador);
 	if ((pJugadoresFile=fopen(path,"w"))==NULL){
 		printf("No se puede abrir el archivo");
@@ -313,7 +437,10 @@ int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJu
 	unJugador=jug_new();
 	int cantidad,retorno=-1,id,confederacion,bandera=0;
 	char confederacionIngresada[51],continuarCargando;
-	ll_sort(pArrayListJugador,ordenarPorIdJugador, 1);
+	if(ll_sort(pArrayListJugador,ordenarPorIdJugador, 1)==0){
+	}else{
+		printf("\nERROR EN LA FUNCION ll_sort\n");
+	}
 	cantidad=ll_len(pArrayListJugador);
 	if ((pSeleccionConvocadaFile=fopen(path,"wb"))==NULL){
 			printf("NO SE PUEDE ABRIR EL ARCHIVO");
@@ -321,8 +448,11 @@ int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJu
 	do{
 		do{
 			opcionesDeConfederacion();
-		utn_getCadenaCaracteres(51,confederacionIngresada,"\nINGRESE LA CONFEDERACION A GUARDAR\n"
-				,"\n--ERROR--\n");
+			if(utn_getCadenaCaracteres(51,confederacionIngresada,"\nINGRESE LA CONFEDERACION A GUARDAR\n"
+					,"\n--ERROR--\n")==0){
+			}else{
+				printf("\nERROR EN LA FUNCION utn_getCadenaCaracteres\n");
+			}
 		}while(validarConfederacion(&confederacion,confederacionIngresada)!=0);
 		for(int i=0;i<cantidad;i++){
 			unJugador= (Jugador*) ll_get(pArrayListJugador,i);
@@ -357,11 +487,12 @@ int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJu
 		}
 		if(bandera==0){
 			printf("\nNO HAY JUGADORES CONVOCADOS EN ESA CONFEDERACION\n");
-			continuarCargando=continuarCarga("\n¿CANCELAR LA GENERACION DEL ARCHIVO?\n");
+			continuarCargando=continuarCarga("\nï¿½CANCELAR LA GENERACION DEL ARCHIVO?\n");
 			if(continuarCargando=='S'){
 				bandera=1;
 			}
 		}
+		retorno=0;
 	}while(bandera!=1);
 	fclose(pSeleccionConvocadaFile);
     return retorno;
@@ -379,15 +510,17 @@ int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJu
 int controller_cargarSeleccionesDesdeTexto(char* path , LinkedList* pArrayListSeleccion)
 {
 	FILE* pSeleccionFile=fopen(path,"r");
+	int retorno=-1;
 	if(pSeleccionFile!=NULL){
 		if(parser_SeleccionFromText(pSeleccionFile ,pArrayListSeleccion)==0){
 			printf("\nARCHIVO %s LEIDO CORECTAMENTE\n",path);
 		}else{
 			printf("ERROR AL CARGAR EL ARCHIVO");
 		}
+		retorno=0;
 	}
 	fclose(pSeleccionFile);
-    return 1;
+    return retorno;
 }
 
 /** \brief Modificar datos de convocados en una seleccion
@@ -404,34 +537,47 @@ int controller_editarSeleccion(LinkedList* pArrayListSeleccion,LinkedList* pArra
 	unJugador=jug_new();
 	unaSeleccion=selec_new();
 	int retorno=-1,idSeleccion,opcionDeMenu,cantidad,idJugador,indiceJugador,i,indiceSeleccion,convocados;
-	int entraIdSeleccion,entraIdJugador,getIdJugador;
+	int entraIdSeleccion,entraIdJugador,getIdJugador,bandera;
 	char confirmarVolver,nacionalidad[51],continuarCargando;
 	if(pArrayListSeleccion!=NULL && unJugador!=NULL && unaSeleccion!=NULL){
-		buscarIdMaximo(pArrayListJugador,&cantidad);
-		ll_sort(pArrayListJugador,ordenarPorIdJugador, 1);
+		if(buscarIdMaximo(pArrayListJugador,&cantidad)==0){
+			if(ll_sort(pArrayListJugador,ordenarPorIdJugador, 1)==0){
+			}else{
+				printf("\nERROR EN LA FUNCION ll_sort\n");
+			}
+		}else{
+			printf("\nERROR EN LA FUNCION buscarIdMaximo\n");
+		}
 		do{
+			bandera=0;
 			opcionDeMenu=menuConvocados();
 			switch(opcionDeMenu){
 			case 1:
 				do{
-					mostrarConfederaciones(pArrayListSeleccion);
-					utn_getEntero(&idSeleccion,"\nINGRESAR SELECCION PARA CONVOCAR\n","\n--ERROR--\n",1,32);
+					if(mostrarConfederaciones(pArrayListSeleccion)==0){
+						if(utn_getEntero(&idSeleccion,"\nINGRESAR SELECCION PARA CONVOCAR\n","\n--ERROR--\n",1,32)==0){
+						}else{
+							printf("\nERROR EN LA FUNCION utn_getEntero\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION mostrarConfederaciones\n");
+					}
 					entraIdSeleccion=validarNacionalidadParaConvocados(pArrayListSeleccion,idSeleccion,nacionalidad,&indiceSeleccion);
 				}while(entraIdSeleccion!=0);
 				do{
 					do{
-						mostrarJugadores(pArrayListJugador,2,nacionalidad);
-						utn_getEntero(&idJugador,"\nINGRESAR ID DE JUGADOR PARA CONVOCAR\n","\n--ERROR--\n",1,cantidad);
+						if(mostrarJugadores(pArrayListJugador,2,nacionalidad)==0){
+							if(utn_getEntero(&idJugador,"\nINGRESAR ID DE JUGADOR PARA CONVOCAR\n","\n--ERROR--\n",1,cantidad)==0){
+							}else{
+								printf("\nERROR EN LA FUNCION utn_getEntero\n");
+							}
+						}else{
+							printf("\nERROR EN LA FUNCION mostrarJugadores\n");
+						}
 						entraIdJugador=validarIdDeConvocados(pArrayListJugador,idJugador,nacionalidad,&indiceJugador);
 					}while(entraIdJugador!=0);
-					for(i=0;i<cantidad;i++){
-						unJugador= (Jugador*) ll_get(pArrayListJugador,indiceJugador);
-						break;
-					}
-					for(i=0;i<cantidad;i++){
-						unaSeleccion= (Seleccion*) ll_get(pArrayListSeleccion,indiceSeleccion);
-						break;
-					}
+					unJugador= (Jugador*) ll_get(pArrayListJugador,indiceJugador);
+					unaSeleccion= (Seleccion*) ll_get(pArrayListSeleccion,indiceSeleccion);
 					jug_getIdSeleccion(unJugador,&getIdJugador);
 					if(getIdJugador==0){
 						jug_setIdSeleccion(unJugador,idSeleccion);
@@ -447,16 +593,36 @@ int controller_editarSeleccion(LinkedList* pArrayListSeleccion,LinkedList* pArra
 
 					ll_set(pArrayListJugador,indiceJugador,unJugador);
 					ll_set(pArrayListSeleccion,indiceSeleccion,unaSeleccion);
-					continuarCargando=continuarCarga("\n¿CONTINUAR CONVOCANDO JUGADORES EN ESTA SELECCION?\n");
+					continuarCargando=continuarCarga("\nï¿½CONTINUAR CONVOCANDO JUGADORES EN ESTA SELECCION?\n");
 				}while(continuarCargando!='N');
 				break;
 			case 2:
-				mostrarConfederaciones(pArrayListSeleccion);
-				utn_getEntero(&idSeleccion,"\nINGRESAR SELECCION PARA NO CONVOCAR\n","\n--ERROR--\n",1,32);
-				if(validarNacionalidadParaConvocados(pArrayListSeleccion,idSeleccion,nacionalidad,&indiceSeleccion)==0){
-					do{
-						mostrarJugadores(pArrayListJugador,2,nacionalidad);
-						utn_getEntero(&idJugador,"\nINGRESAR ID DE JUGADOR PARA NO CONVOCAR\n","\n--ERROR--\n",1,cantidad);
+				for(i=0;i<cantidad;i++){
+					unJugador= (Jugador*) ll_get(pArrayListJugador,i);
+					jug_getIdSeleccion(unJugador,&idSeleccion);
+					if(idSeleccion!=0){
+						bandera=1;
+						break;
+					}
+				}
+				if(bandera==1){
+					if(mostrarConfederaciones(pArrayListSeleccion)==0){
+						if(utn_getEntero(&idSeleccion,"\nINGRESAR SELECCION PARA NO CONVOCAR\n","\n--ERROR--\n",1,32)==0){
+						}else{
+							printf("\nERROR EN LA FUNCION utn_getEntero\n");
+						}
+					}else{
+						printf("\nERROR EN LA FUNCION mostrarConfederaciones\n");
+					}
+					if(validarNacionalidadParaConvocados(pArrayListSeleccion,idSeleccion,nacionalidad,&indiceSeleccion)==0){
+						if(mostrarJugadores(pArrayListJugador,2,nacionalidad)==0){
+							if(utn_getEntero(&idJugador,"\nINGRESAR ID DE JUGADOR PARA NO CONVOCAR\n","\n--ERROR--\n",1,cantidad)==0){
+							}else{
+								printf("\nERROR EN LA FUNCION utn_getEntero\n");
+							}
+						}else{
+							printf("\nERROR EN LA FUNCION mostrarJugadores\n");
+						}
 						if(validarIdDeConvocados(pArrayListJugador,idJugador,nacionalidad,&indiceJugador)==0){
 							for(i=0;i<cantidad;i++){
 								unJugador= (Jugador*) ll_get(pArrayListJugador,indiceJugador);
@@ -468,8 +634,8 @@ int controller_editarSeleccion(LinkedList* pArrayListSeleccion,LinkedList* pArra
 							}
 							jug_getIdSeleccion(unJugador,&getIdJugador);
 							if(getIdJugador!=0){
-							jug_setIdSeleccion(unJugador,0);
-							selec_getConvocados(unaSeleccion,&convocados);
+								jug_setIdSeleccion(unJugador,0);
+								selec_getConvocados(unaSeleccion,&convocados);
 								if(convocados>0){
 									convocados--;
 									selec_setConvocados(unaSeleccion,convocados);
@@ -481,8 +647,9 @@ int controller_editarSeleccion(LinkedList* pArrayListSeleccion,LinkedList* pArra
 							ll_set(pArrayListJugador,indiceJugador,unJugador);
 							ll_set(pArrayListSeleccion,indiceSeleccion,unaSeleccion);
 						}
-					continuarCargando=continuarCarga("\n¿CONTINUAR DESCONVOCANDO JUGADORES EN ESTA SELECCION?\n");
-					}while(continuarCargando!='N');
+					}
+				}else{
+					printf("\nNO HAY JUGADORES CONVOCADOS\n");
 				}
 				break;
 			case 3:
@@ -508,7 +675,10 @@ int controller_listarSelecciones(LinkedList* pArrayListSeleccion)
 {
 	int retorno=-1;
 	if(pArrayListSeleccion!=NULL){
-		mostrarConfederaciones(pArrayListSeleccion);
+		if(mostrarConfederaciones(pArrayListSeleccion)==0){
+		}else{
+			printf("\nERROR EN LA FUNCION mostrarConfederaciones\n");
+		}
 		retorno=0;
 	}
     return retorno;

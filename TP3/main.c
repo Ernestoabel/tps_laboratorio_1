@@ -20,15 +20,27 @@ int main()
         switch(opcionPrincipal)
         {
             case 1:
-            	controller_cargarJugadoresDesdeTexto("jugadores.csv",listaJugadores);
-            	controller_cargarSeleccionesDesdeTexto("selecciones.csv",listaSelecciones);
-            	parser_y_apertura_IdFromText(&id);
+            	if(controller_cargarJugadoresDesdeTexto("jugadores.csv",listaJugadores)==0){
+            	}else{
+            		printf("\nERROR EN LA FUNCION controller_cargarJugadoresDesdeTexto");
+            	}
+            	if(controller_cargarSeleccionesDesdeTexto("selecciones.csv",listaSelecciones)==0){
+            	}else{
+            		printf("\nERROR EN LA FUNCION controller_cargarSeleccionesDesdeTexto");
+            	}
+            	if(parser_y_apertura_IdFromText(&id)==0){
+            	}else{
+            		printf("\nERROR EN LA FUNCION parser_y_apertura_IdFromText");
+            	}
                 break;
             case 2:
             	if(ll_isEmpty(listaJugadores)==0){
             		do{
-						controller_agregarJugador(listaJugadores,&id);
-						continuarCargando=continuarCarga("\n¿CONTINUAR CARGANDO JUGADORES?\n");
+						if(controller_agregarJugador(listaJugadores,&id)==0){
+						}else{
+		            		printf("\nERROR EN LA FUNCION controller_agregarJugador");
+		            	}
+						continuarCargando=continuarCarga("\nï¿½CONTINUAR CARGANDO JUGADORES?\n");
             		}while(continuarCargando!='N');
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
@@ -36,14 +48,20 @@ int main()
             	break;
             case 3:
             	if(ll_isEmpty(listaJugadores)==0){
-            		controller_editarJugador(listaJugadores);
+            		if(controller_editarJugador(listaJugadores)==0){
+            		}else{
+	            		printf("\nERROR EN LA FUNCION controller_editarJugador");
+	            	}
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
             	}
             	break;
             case 4:
             	if(ll_isEmpty(listaJugadores)==0){
-            		controller_removerJugador(listaJugadores);
+            		if(controller_removerJugador(listaJugadores,listaSelecciones)==0){
+            		}else{
+	            		printf("\nERROR EN LA FUNCION controller_removerJugador");
+	            	}
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
             	}
@@ -54,13 +72,22 @@ int main()
 						opcionMenuListados=menuListados();
 						switch(opcionMenuListados){
 							case 1:
-								controller_listarJugadores(listaJugadores);
+								if(controller_listarJugadores(listaJugadores)==0){
+								}else{
+				            		printf("\nERROR EN LA FUNCION controller_listarJugadores");
+				            	}
 								break;
 							case 2:
-								controller_listarSelecciones(listaSelecciones);
+								if(controller_listarSelecciones(listaSelecciones)==0){
+								}else{
+				            		printf("\nERROR EN LA FUNCION controller_listarSelecciones");
+				            	}
 								break;
 							case 3:
-								mostrarJugadores(listaJugadores,3,"");
+								if(mostrarJugadores(listaJugadores,3,"")==0){
+								}else{
+				            		printf("\nERROR EN LA FUNCION mostrarJugadores");
+				            	}
 								break;
 							case 4:
 								volverlAlMenu=continuarCarga("\nCONFIRME PARA VOLVER AL MENU PRINCIPAL");
@@ -73,34 +100,58 @@ int main()
             	break;
             case 6:
             	if(ll_isEmpty(listaJugadores)==0){
-            		controller_editarSeleccion(listaSelecciones,listaJugadores);
+            		if(controller_editarSeleccion(listaSelecciones,listaJugadores)){
+            		}else{
+	            		printf("\nERROR EN LA FUNCION controller_editarSeleccion");
+	            	}
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
             	}
             	break;
             case 7:
             	if(ll_isEmpty(listaJugadores)==0){
-            		controller_ordenarJugadores(listaJugadores,listaSelecciones);
+            		if(controller_ordenarJugadores(listaJugadores,listaSelecciones)==0){
+            		}else{
+	            		printf("\nERROR EN LA FUNCION controller_ordenarJugadores");
+	            	}
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
             	}
             	break;
             case 8:
             	if(ll_isEmpty(listaJugadores)==0){
-            		controller_guardarJugadoresModoBinario("SeleccionConvocada.dat",listaJugadores);
+            		if(controller_guardarJugadoresModoBinario("SeleccionConvocada.dat",listaJugadores)==0){
+            		}else{
+	            		printf("\nERROR EN LA FUNCION controller_guardarJugadoresModoBinario");
+	            	}
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
             	}
             	break;
             case 9:
-            	controller_cargarJugadoresDesdeBinario("SeleccionConvocada.dat",listaJugadoresConvocados);
-            	controller_listarJugadores(listaJugadoresConvocados);
+            	if(controller_cargarJugadoresDesdeBinario("SeleccionConvocada.dat",listaJugadoresConvocados)==0){
+            	}else{
+            		printf("\nERROR EN LA FUNCION controller_cargarJugadoresDesdeBinario");
+            	}
+            	if(controller_listarJugadores(listaJugadoresConvocados)==0){
+            	}else{
+            		printf("\nERROR EN LA FUNCION controller_listarJugadores");
+            	}
             	break;
             case 10:
             	if(ll_isEmpty(listaJugadores)==0){
-            		controller_guardarJugadoresModoTexto("jugadores.csv",listaJugadores);
-            		controller_guardarSeleccionesModoTexto("selecciones.csv",listaSelecciones);
-            		parser_y_guardado_IdToText(id);
+            		if(controller_guardarJugadoresModoTexto("jugadores.csv",listaJugadores)==0){
+            		}else{
+                		printf("\nERROR EN LA FUNCION controller_guardarJugadoresModoTexto");
+                	}
+            		if(controller_guardarSeleccionesModoTexto("selecciones.csv",listaSelecciones)==0){
+            		}else{
+                		printf("\nERROR EN LA FUNCION controller_guardarSeleccionesModoTexto");
+                	}
+            		if(parser_y_guardado_IdToText(id)==0){
+            		}else{
+                		printf("\nERROR EN LA FUNCION parser_y_guardado_IdToText");
+                	}
             	}else{
             		printf("\nCARGUE EL ARCHIVO PARA INGRESAR\n");
             	}
